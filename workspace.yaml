@@ -1,0 +1,3 @@
+load_from:
+  #- python_package: dagster_integrations
+  - python_file: dagster_integrations/repo.py

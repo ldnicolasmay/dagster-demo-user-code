@@ -1,0 +1,72 @@
+[project]
+name = "dagster-demo-user-code"
+version = "0.0.1"
+description = "dagster-demo-user-code"
+authors = [
+    { name = "L. D. Nicolas May", email = "LDNicolasMay@gmail.com" },
+]
+
+requires-python = ">=3.9,<3.11"
+license = { text = "All Rights Reserved" }
+dependencies = [
+    "dagster<1.6.0,>=1.5.0",
+    "dagster-webserver<1.6.0,>=1.5.0",
+    "dagster-docker<0.22.0,>=0.21.0",
+    "dagster-k8s<0.22.0,>=0.21.0",
+    #"dagster-celery-k8s<0.22.0,>=0.21.0",
+    "dagster-gcp<0.22.0,>=0.21.0",
+    "dagster-gcp-pandas<0.22.0,>=0.21.0",
+    "dagster-postgres<0.22.0,>=0.21.0",
+    "gcsfs",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.3.1",
+    "sqlfluff~=2.1.4",
+    "commitizen>=3.6.0",
+    "pre-commit>=3.3.3",
+    "gitlint>=0.19.1"
+]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.ruff]
+select = [
+    "B",   # flake8-bugbear
+    "C",   # mccabe complexity
+    "E",   # Error
+    "F",   # pyflakes
+    "W",   # Warnings
+    "I",   # isort
+    "PD",  # pandas-vet https://beta.ruff.rs/docs/rules/#pandas-vet-pd
+    "D",   # pydocstyle https://beta.ruff.rs/docs/rules/#pydocstyle-d
+]
+ignore = [
+    "B008", # function-call-in-default-argument
+    "B905", # zip-without-explicit-strict
+    "C901", # complex-structure
+    "D100", # undocumented-public-module
+    "D104", # undocumented-public-package
+    "D211", # blank-line-before-class
+    "D212", # multi-line-summary-first-line
+    "D213", # multi-line-summary-second-line
+    "D417", # undocumented-param
+    "E501", # line-too-long (handled by black)
+]
+
+[tool.black]
+line-length = 120
+
+[tool.sqlfluff.core]
+dialect = "bigquery"
+exclude_rules = "AM04"
+max_line_length = 120
+
+[tool.sqlfluff.rules.capitalisation.keywords]
+capitalisation_policy = "upper"
+
+[tool.sqlfluff.layout.type.comma]
+line_position = "trailing"

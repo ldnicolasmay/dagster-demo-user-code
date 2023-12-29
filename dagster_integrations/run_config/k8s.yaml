@@ -1,0 +1,12 @@
+execution:
+  config:
+    image_pull_policy: "Always"
+
+resources:
+  gcs:
+    config:
+      project: "gke-demo-355900"
+  io_manager:
+    config:
+      gcs_bucket: "ldnicolasmay-dagster-demo-io"
+      gcs_prefix: "dagster-k8s"
