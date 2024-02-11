@@ -88,7 +88,7 @@ pod_per_op_job = example_graph.to_job(
         "dagster-k8s/config": {
             "container_config": {
                 "resources": {
-                    "requests": {"cpu": "200m", "memory": "256Mi"},
+                    "requests": {"cpu": "1", "memory": "1Gi"},  # Scale up container resources
                 }
             },
         }
